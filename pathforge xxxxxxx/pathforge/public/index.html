@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PathForge — Industry-Ready Student Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="logo">◆</span> PathForge</div>
+  <span class="tag">Industry-Ready Student Platform</span>
+</header>
+
+<main>
+<section id="hero" class="hero">
+  <div>
+    <p class="eyebrow">AI-POWERED CAREER ROADMAP</p>
+    <h1>Turn your current skills into your <span>career path.</span></h1>
+    <p class="sub">Tell us where you are today and where you want to go. PathForge identifies skill gaps and builds a practical roadmap of skills and projects.</p>
+    <button class="primary" onclick="document.getElementById('assessment').scrollIntoView({behavior:'smooth'})">Build my roadmap →</button>
+  </div>
+  <div class="hero-card">
+    <div class="mini-title">Your roadmap</div>
+    <div class="path-line"><i class="done"></i><span>Programming fundamentals</span><b>✓</b></div>
+    <div class="path-line"><i class="active"></i><span>Machine Learning</span><b>72%</b></div>
+    <div class="path-line"><i></i><span>Deep Learning</span><b>Next</b></div>
+    <div class="path-line"><i></i><span>Industry Project</span><b>Later</b></div>
+  </div>
+</section>
+
+<section id="assessment" class="panel">
+  <div class="section-head">
+    <div><p class="eyebrow">STEP 01</p><h2>Student assessment</h2></div>
+    <span class="step">1 / 1</span>
+  </div>
+
+  <div class="grid">
+    <label>Education level
+      <select id="education">
+        <option>B.Tech / B.E.</option><option>B.Sc.</option><option>Diploma</option><option>School / High School</option>
+      </select>
+    </label>
+    <label>Year / level
+      <select id="year"><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>Graduate</option></select>
+    </label>
+    <label>Target career
+      <select id="career">
+        <option value="aiml">AI / ML Engineer</option>
+        <option value="software">Software Engineer</option>
+        <option value="data">Data Scientist</option>
+        <option value="robotics">Robotics Engineer</option>
+        <option value="cloud">Cloud Engineer</option>
+      </select>
+    </label>
+    <label>Weekly learning time
+      <select id="hours"><option value="5">5 hours</option><option value="10" selected>10 hours</option><option value="15">15 hours</option><option value="20">20+ hours</option></select>
+    </label>
+  </div>
+
+  <div class="block">
+    <h3>Current skills</h3>
+    <p class="muted">Select skills you already know.</p>
+    <div id="skills" class="chips"></div>
+  </div>
+
+  <div class="block">
+    <h3>Projects you've completed</h3>
+    <textarea id="projects" placeholder="Example: calculator in C++, portfolio website, Teachable Machine image classifier..."></textarea>
+  </div>
+
+  <div class="grid">
+    <label>Resume PDF (optional)
+      <input id="resume" type="file" accept="application/pdf">
+    </label>
+    <label>GitHub username (optional)
+      <input id="github" type="text" placeholder="e.g. octocat">
+    </label>
+  </div>
+  <p class="muted">Resume and GitHub are optional. Use a test resume during judging if you do not want to share personal information.</p>
+  <div id="status" class="status"></div>
+  <button class="primary full" onclick="generateRoadmap()">Analyze with AI & generate roadmap ✦</button>
+</section>
+
+<section id="dashboard" class="hidden">
+  <div class="dashboard-top">
+    <div><p class="eyebrow">YOUR PERSONALIZED PLAN</p><h2 id="dashTitle">AI / ML Engineer Roadmap</h2><p class="muted" id="dashSummary"></p></div>
+    <button class="secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">Edit profile</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span>Career match</span><strong id="match">82%</strong><small>Based on selected goal</small></div>
+    <div class="stat"><span>Skill coverage</span><strong id="coverage">0%</strong><small>Skills already covered</small></div>
+    <div class="stat"><span>Suggested duration</span><strong id="duration">12 mo</strong><small>At your weekly pace</small></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head"><h3>Skill gap analysis</h3><span class="badge">Personalized</span></div>
+      <div id="skillBars"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Recommended projects</h3><span class="badge">Portfolio</span></div>
+      <div id="projectList"></div>
+    </div>
+  </div>
+
+  <div class="card roadmap">
+    <div class="card-head"><h3>Learning roadmap</h3><span class="muted">From fundamentals → industry ready</span></div>
+    <div id="roadmap"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>Next 30 days</h3><span class="badge">Start here</span></div>
+    <div id="next30"></div>
+  </div>
+
+  <div class="card mentor">
+    <div class="card-head"><h3>AI Mentor</h3><span class="badge">Ask anything</span></div>
+    <div id="chatLog" class="chat-log"><div class="chat bot">Hi! Ask me how to improve a skill, choose a project, or plan your next week.</div></div>
+    <div class="chat-row"><input id="chatInput" placeholder="e.g. What should I learn first for ML?" onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Ask</button></div>
+  </div>
+</section>
+</main>
+<footer>PathForge • Hackathon MVP • Personalized guidance, not a guarantee of employment.</footer>
+<script src="app.js"></script>
+</body>
+</html>
